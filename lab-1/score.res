@@ -1,2 +1,2 @@
-Schema is incorrect.
-Total score: 0
+Schema is correct.
+Total score: 15

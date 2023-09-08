@@ -80,4 +80,5 @@ CREATE TABLE lineitem (
     l_receiptdate date not null,
     l_shipinstruct char(25) not null,
     l_shipmode char(10) not null,
+    l_comment varchar(44) not null
 );

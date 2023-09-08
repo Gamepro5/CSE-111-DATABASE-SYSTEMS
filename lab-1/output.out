@@ -57,3 +57,21 @@ CREATE TABLE orders (
     o_shippriority decimal(1,0) not null,
     o_comment varchar(79) not null
 );
+CREATE TABLE lineitem (
+    l_orderkey decimal(12,0) not null,
+    l_partkey decimal(10,0) not null,
+    l_suppkey decimal(8,0) not null,
+    l_linenumber decimal(1,0) not null,
+    l_quantity decimal(2,0) not null,
+    l_extendedprice decimal(8,2) not null,
+    l_discount decimal(3,2) not null,
+    l_tax decimal(3,2) not null,
+    l_returnflag char(1) not null,
+    l_linestatus char(1) not null,
+    l_shipdate date not null,
+    l_commitdate date not null,
+    l_receiptdate date not null,
+    l_shipinstruct char(25) not null,
+    l_shipmode char(10) not null,
+    l_comment varchar(44) not null
+);
