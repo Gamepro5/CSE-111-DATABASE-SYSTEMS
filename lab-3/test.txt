@@ -1,0 +1,5 @@
+to run one, enter:
+
+sqlite3 tpch.sqlite < "test/1.sql"
+
+in the linux terminal and replace 1.sql with the code you want to execute on the database.
