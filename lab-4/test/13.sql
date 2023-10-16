@@ -1,12 +1,12 @@
 .headers on
-select supp_region, cust_region, min(price1, price2) as min_price
-from 	(select r_name as supp_region, o_totalprice as price1
-		from orders, nation, region, lineitem, supplier
-		where o_orderkey = l_orderkey and l_suppkey = s_suppkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey
-		group by r_name), 
-		
-		(select r_name as cust_region, o_totalprice as price2
-		from orders, nation, region, lineitem, customer
-		where o_orderkey = l_orderkey and c_custkey = o_custkey and c_nationkey = n_nationkey and n_regionkey = r_regionkey
-		group by r_name)
-where supp_region != cust_region;
+select region2.r_name as supp_region, region1.r_name as cust_region, min(o_totalprice) as min_price
+from customer customer1 
+join nation nation1 on customer1.c_nationkey = nation1.n_nationkey
+join region region1 on region1.r_regionkey = nation1.n_regionkey
+join orders on o_custkey = c_custkey
+join lineitem on l_orderkey = o_orderkey
+join supplier supplier1 on supplier1.s_suppkey = l_suppkey
+join nation nation2 on supplier1.s_nationkey = nation2.n_nationkey 
+join region region2 on region2.r_regionkey = nation2.n_regionkey
+
+group by region1.r_name, region2.r_regionkey;
