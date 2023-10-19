@@ -25,6 +25,8 @@ join lineitem on l_orderkey = o_orderkey
 where strftime('%Y', l_shipdate) = '1997'
 group by n_name
 ) as total_imports_table
+
 on total_exports_table.nation = total_imports_table.nation
+
 
 ;
