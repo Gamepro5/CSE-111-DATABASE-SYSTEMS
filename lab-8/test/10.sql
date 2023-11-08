@@ -1,5 +1,6 @@
 .eqp on
 .headers on
+.expert
 
 select s_name, s_acctbal
 from supplier, nation, region

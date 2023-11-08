@@ -33,14 +33,27 @@ def closeConnection(_conn, _dbFile):
 def createTable(_conn):
     print("++++++++++++++++++++++++++++++++++")
     print("Create table")
-
+    _conn.execute("""  CREATE TABLE warehouse ( w_warehousekey decimal(9,0) not null,
+                        w_name char(100) not null,
+                        w_capacity decimal(6,0) not null,
+                        w_suppkey decimal(9,0) not null,
+                        w_nationkey decimal(2,0) not null
+    );""")
     print("++++++++++++++++++++++++++++++++++")
 
 
 def dropTable(_conn):
     print("++++++++++++++++++++++++++++++++++")
     print("Drop tables")
-
+    _conn.execute("""  DROP TABLE IF EXISTS warehouse;""")
+    _conn.execute("""  DROP TABLE IF EXISTS region;""")
+    _conn.execute("""  DROP TABLE IF EXISTS nation;""")
+    _conn.execute("""  DROP TABLE IF EXISTS part;""")
+    _conn.execute("""  DROP TABLE IF EXISTS supplier;""")
+    _conn.execute("""  DROP TABLE IF EXISTS partsupp;""")
+    _conn.execute("""  DROP TABLE IF EXISTS customer;""")
+    _conn.execute("""  DROP TABLE IF EXISTS orders;""")
+    _conn.execute("""  DROP TABLE IF EXISTS lineitem;""")
     print("++++++++++++++++++++++++++++++++++")
 
 
