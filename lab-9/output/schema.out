@@ -75,3 +75,30 @@ CREATE TABLE lineitem (
   l_shipmode     char(10) not null,
   l_comment      varchar(44) not null
 );
+CREATE VIEW V1 as
+select c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, n_name as c_nation, r_name as c_region
+from customer join nation on c_nationkey = n_nationkey join region on n_regionkey = r_regionkey
+/* V1(c_custkey,c_name,c_address,c_phone,c_acctbal,c_mktsegment,c_comment,c_nation,c_region) */;
+CREATE VIEW V2 as
+
+select o_orderkey, o_custkey, o_orderstatus, o_totalprice, STRFTIME('%Y', o_orderdate) as o_orderyear, o_orderpriority, o_clerk,
+o_shippriority, o_comment
+from orders
+/* V2(o_orderkey,o_custkey,o_orderstatus,o_totalprice,o_orderyear,o_orderpriority,o_clerk,o_shippriority,o_comment) */;
+CREATE VIEW V4 as
+select s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_name as s_nation, r_name as s_region 
+from supplier join nation on s_nationkey = n_nationkey join region on n_regionkey = r_regionkey
+/* V4(s_suppkey,s_name,s_address,s_phone,s_acctbal,s_comment,s_nation,s_region) */;
+CREATE VIEW V10 as
+select p_type, min(l_discount) as min_discount, max(l_discount) as max_discount
+from part join lineitem on p_partkey = l_partkey
+group by p_type
+/* V10(p_type,min_discount,max_discount) */;
+CREATE VIEW V111 as
+select c_custkey, c_name, c_nationkey, c_acctbal
+from customer where c_acctbal < 0
+/* V111(c_custkey,c_name,c_nationkey,c_acctbal) */;
+CREATE VIEW V112 as
+select s_suppkey, s_name, s_nationkey, s_acctbal
+from supplier where s_acctbal > 0
+/* V112(s_suppkey,s_name,s_nationkey,s_acctbal) */;
